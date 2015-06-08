@@ -21,6 +21,7 @@
 -include device/huawei/u8833/BoardConfig.mk
 
 TARGET_BOOTLOADER_BOARD_NAME := u8950
+TARGET_OTA_ASSERT_DEVICE := u8950,hwu8950
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/huawei/u8950/bluetooth
