@@ -16,14 +16,28 @@
 
 DEVICE_PACKAGE_OVERLAYS += device/huawei/u8950/overlay
 
+PRODUCT_COPY_FILES += \
+    device/huawei/u8950/configs/AudioFilter.csv:system/etc/AudioFilter.csv \
+    device/huawei/u8950/configs/thermald.conf:system/etc/thermald.conf \
+    device/huawei/u8950/configs/nvram_4330.txt:system/etc/nvram_4330.txt
+	
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml
+
+PRODUCT_COPY_FILES += \
+		device/huawei/u8833/keylayout/7k_handset.kl:system/usr/keylayout/7k_handset.kl \
+		device/huawei/u8833/keylayout/atmel_mxt_ts.kl:system/usr/keylayout/atmel_mxt_ts.kl \
+		device/huawei/u8833/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
+		device/huawei/u8833/keylayout/ft5x06_ts.kl:system/usr/keylayout/ft5x06_ts.kl \
+		device/huawei/u8833/keylayout/Generic.kl:system/usr/keylayout/Generic.kl
 
 # Properties
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.confg.hw_appfsversion=u8950V5_1_SYSIMG \
     ro.confg.hw_appsbootversion=u8950V5_1_APPSBOOT \
-    ro.confg.hw_appversion=u8950V5_1_KERNEL
+    ro.confg.hw_appversion=u8950V5_1_KERNEL\
+		ro.telephony.ril.config=qcomdsds,skippinpukcount,signalstrength \
+		ro.telephony.ril_class=HuaweiQualcommRIL
 
 $(call inherit-product-if-exists, vendor/huawei/u8950/u8950-vendor.mk)

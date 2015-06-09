@@ -20,8 +20,38 @@
 # Inherit from the u8833 definitions
 -include device/huawei/u8833/BoardConfig.mk
 
+# Audio
+TARGET_PROVIDES_LIBAUDIO := true
+
+# Bluetooth
+BOARD_BLUEDROID_VENDOR_CONF := device/huawei/u8950/bluetooth/vnd_u8950.txt
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/huawei/u8950/bluetooth
+BOARD_HAVE_BLUETOOTH_BCM := true
+
+# RIL
+BOARD_RIL_CLASS := ../../../device/huawei/u8833/ril/
+
+# Kernel
+TARGET_KERNEL_CONFIG := u8950_defconfig
+
 TARGET_BOOTLOADER_BOARD_NAME := u8950
 TARGET_OTA_ASSERT_DEVICE := u8950,hwu8950
 
-# Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/huawei/u8950/bluetooth
+# Wi-Fi
+BOARD_WLAN_DEVICE := bcmdhd
+
+BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+
+WIFI_DRIVER_FW_PATH_AP := "/system/etc/fw_4330_b2.bin"
+WIFI_DRIVER_FW_PATH_STA := "/system/etc/fw_4330_b2.bin"
+WIFI_DRIVER_FW_PATH_P2P := "/system/etc/fw_4330_b2.bin"
+WIFI_DRIVER_FW_PATH_PARAM := "/sys/module/dhd/parameters/firmware_path"
+
+WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/fw_4330_b2.bin nvram_path=/system/etc/nvram_4330.txt"
+WIFI_DRIVER_MODULE_NAME := "dhd"
+WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/dhd.ko"
+WIFI_EXT_MODULE_NAME := "cfg80211"
+WIFI_EXT_MODULE_PATH := "/system/lib/modules/cfg80211.ko"
+
+BOARD_LEGACY_NL80211_STA_EVENTS := true
