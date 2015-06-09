@@ -15,60 +15,13 @@
 #
 
 # Inherit from the proprietary version
--include vendor/huawei/u8950/BoardConfigVendor.mk
+-include vendor/huawei/u8951/BoardConfigVendor.mk
 
-# Inherit from the common msm7x27a definitions
--include device/huawei/msm7x27a-common/BoardConfigCommon.mk
-
-# Architecture and CPU
-TARGET_CPU_SMP := true
+# Inherit from the u8833 definitions
+-include device/huawei/u8833/BoardConfig.mk
 
 TARGET_BOOTLOADER_BOARD_NAME := u8950
-TARGET_OTA_ASSERT_DEVICE := u8950,hwu8950,u8950-51,hwu8950-51,C8950D,hwC8950D,C8950,hwC8950
-# Audio
-TARGET_PROVIDES_LIBAUDIO := true
+TARGET_OTA_ASSERT_DEVICE := u8950,hwu8950
 
 # Bluetooth
-BOARD_BLUEDROID_VENDOR_CONF := device/huawei/u8950/bluetooth/vnd_u8950.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/huawei/u8950/bluetooth
-BOARD_HAVE_BLUETOOTH_BCM := true
-
-# FM Radio
-BOARD_FM_DEVICE := bcm4330
-BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
-BOARD_HAVE_FM_RADIO := true
-
-# Kernel
-TARGET_KERNEL_CONFIG := u8950_defconfig
-
-# Partitions
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1073741824 # 0x40000000
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 1207943168 # 0x47FFC000
-
-# Recovery
-BOARD_CUSTOM_GRAPHICS := ../../../device/huawei/u8950/recovery/graphics.c
-TARGET_RECOVERY_FSTAB := device/huawei/u8950/rootdir/fstab.huawei
-
-# RIL
-BOARD_RIL_CLASS := ../../../device/huawei/u8950/ril/
-
-
-# Wi-Fi
-BOARD_HAS_ATH_WLAN := false
-BOARD_WLAN_DEVICE := bcmdhd
-
-BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-
-WIFI_DRIVER_FW_PATH_AP := "/system/etc/fw_4330_b2.bin"
-WIFI_DRIVER_FW_PATH_STA := "/system/etc/fw_4330_b2.bin"
-WIFI_DRIVER_FW_PATH_P2P := "/system/etc/fw_4330_b2.bin"
-WIFI_DRIVER_FW_PATH_PARAM := "/sys/module/dhd/parameters/firmware_path"
-
-WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/fw_4330_b2.bin nvram_path=/system/etc/nvram_4330.txt"
-WIFI_DRIVER_MODULE_NAME := "dhd"
-WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/dhd.ko"
-WIFI_EXT_MODULE_NAME := "cfg80211"
-WIFI_EXT_MODULE_PATH := "/system/lib/modules/cfg80211.ko"
-
-BOARD_LEGACY_NL80211_STA_EVENTS := true
