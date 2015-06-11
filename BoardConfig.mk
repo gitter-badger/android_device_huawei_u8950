@@ -15,27 +15,42 @@
 #
 
 # Inherit from the proprietary version
--include vendor/huawei/u8951/BoardConfigVendor.mk
+-include vendor/huawei/u8950/BoardConfigVendor.mk
 
-# Inherit from the u8833 definitions
--include device/huawei/u8833/BoardConfig.mk
+# Inherit from the common msm7x27a definitions
+-include device/huawei/msm7x27a-common/BoardConfigCommon.mk
+
+TARGET_BOOTLOADER_BOARD_NAME := u8950
+TARGET_OTA_ASSERT_DEVICE := u8950,hwu8950
 
 # Audio
-TARGET_PROVIDES_LIBAUDIO := true
+TARGET_HAS_QACT := true
+#TARGET_PROVIDES_LIBAUDIO := true
 
 # Bluetooth
 BOARD_BLUEDROID_VENDOR_CONF := device/huawei/u8950/bluetooth/vnd_u8950.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/huawei/u8950/bluetooth
 BOARD_HAVE_BLUETOOTH_BCM := true
 
+# FM Radio
+BOARD_FM_DEVICE := bcm4330
+BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
+BOARD_HAVE_FM_RADIO := true
+BOARD_HAVE_QCOM_FM := true
+
 # RIL
-BOARD_RIL_CLASS := ../../../device/huawei/u8833/ril/
+BOARD_RIL_CLASS := ../../../device/huawei/u8950/ril/
 
 # Kernel
 TARGET_KERNEL_CONFIG := u8950_defconfig
 
-TARGET_BOOTLOADER_BOARD_NAME := u8950
-TARGET_OTA_ASSERT_DEVICE := u8950,hwu8950
+# Partitions
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1073741824 # 0x40000000
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 1207943168 # 0x47FFC000
+
+# Recovery
+BOARD_CUSTOM_GRAPHICS := ../../../device/huawei/u8950/recovery/graphics.c
+TARGET_RECOVERY_FSTAB := device/huawei/u8950/rootdir/fstab.huawei
 
 # Wi-Fi
 BOARD_WLAN_DEVICE := bcmdhd
